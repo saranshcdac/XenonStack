@@ -1,0 +1,2392 @@
+<!DOCTYPE html><html><head><title>pastebin</title><link href="/css/paste.css" rel="stylesheet" type="text/css" /><link href="/css/prettyprint/solarized.css" rel="stylesheet" type="text/css" /><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><script src="/script/prettify/run_prettify.js"></script></head><body><pre class="prettyprint linenums">
+
+https://click-away.netlify.app/index.html
+
+Index:-
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;meta name=&quot;description&quot; content=&quot;Shop for the latest fashion trends at our online store. Enjoy free shipping and easy returns. Save items to your cart and access them from anywhere&quot;&gt;
+    &lt;title&gt;Click Away&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;./style.css&quot;&gt;
+    &lt;link rel=&quot;icon&quot; type=&quot;image/x-icon&quot; href=&quot;/./images/icon.png&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h2 class=&quot;logo&quot;&gt;Click Away&lt;/h2&gt;
+        &lt;nav class=&quot;navbar&quot;&gt;
+            &lt;a class=&quot;home&quot; href=&quot;./index.html&quot;&gt;Home&lt;/a&gt;
+            &lt;a class=&quot;login&quot; href=&quot;./Login/login.html&quot;&gt;Login&lt;/a&gt;
+            &lt;a class=&quot;signup&quot; href=&quot;./Signup/signup.html&quot;&gt;Signup&lt;/a&gt;
+            &lt;a class=&quot;myCart&quot; href=&quot;#&quot;&gt;My Cart&lt;/a&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+    &lt;main class=&quot;container&quot;&gt;
+        &lt;div class=&quot;page-left&quot;&gt;
+            &lt;div class=&quot;pageInfo&quot;&gt;
+                &lt;h1 class=&quot;main-page-heading&quot;&gt;Click Away&lt;/h1&gt;
+                &lt;p class=&quot;page-title&quot;&gt;Get the Best Deals on Men, Women, Gadgets, and Groceries - Shop Now and Save Big!
+                &lt;/p&gt;
+                &lt;div class=&quot;login-signup&quot;&gt;
+                    &lt;button id=&quot;login&quot; type=&quot;button&quot;&gt;Login&lt;/button&gt;
+                    &lt;button id=&quot;signup&quot; type=&quot;button&quot;&gt;Signup&lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;card-wrapper&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;page-right&quot;&gt;
+            &lt;img src=&quot;./images/pageImage.png&quot; alt=&quot;image&quot;&gt;
+        &lt;/div&gt;
+    &lt;/main&gt;
+    &lt;script src=&quot;./script.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+
+Script:-
+const card = document.querySelector(&#39;.card-wrapper&#39;);
+
+fetch(&#39;https://fakestoreapi.com/products&#39;)
+    .then(resolve =&gt; resolve.json())
+    .then(data =&gt; {
+        const idx = Math.abs(Math.floor(Math.random() * data.length-1));
+        card.innerHTML = `
+        &lt;div class=&quot;card&quot;&gt;
+            &lt;img class=&quot;image-top&quot; src=${data[idx].image} alt=&quot;${data[idx].title}&quot;&gt;
+            &lt;div class=&quot;card-body&quot;&gt;
+                &lt;h5 class=&quot;card-title&quot;&gt;${data[idx].title}&lt;/h5&gt;
+                &lt;p class=&quot;card-text&quot;&gt;&amp;#36;${data[idx].price}&lt;/p&gt;
+                &lt;p class=&quot;card-stock&quot;&gt;Hurry up only ${data[idx].rating.count} items left!!!&lt;/p&gt;
+                &lt;p class=&quot;card-rating&quot;&gt;Ratings: ${data[idx].rating.rate} &amp;#9733;&lt;/p&gt;   
+            &lt;/div&gt;
+            &lt;button class=&#39;addCart&#39;&gt;Add to cart&lt;/button&gt;
+        &lt;/div&gt;`;
+        const addCart = document.querySelector(&#39;.addCart&#39;);
+        addCart.addEventListener(&quot;click&quot;, () =&gt; {
+            alert(&quot;Please login to continue!!&quot;);
+        })
+    })
+
+const login = document.querySelector(&#39;.login&#39;);
+const signup = document.querySelector(&#39;.signup&#39;);
+const login2 = document.querySelector(&#39;#login&#39;);
+const signup2 = document.querySelector(&#39;#signup&#39;);
+const home = document.querySelector(&#39;.home&#39;);
+const myCart = document.querySelector(&#39;.myCart&#39;);
+myCart.addEventListener(&#39;click&#39;,()=&gt;{
+    alert(&#39;Please login to continue!!!&#39;)
+})
+
+login2.addEventListener(&quot;click&quot;, () =&gt; {
+    window.location.href = &quot;./Login/login.html&quot;;
+})
+
+signup2.addEventListener(&quot;click&quot;, () =&gt; {
+    window.location.href = &quot;./Signup/signup.html&quot;;
+})
+
+if(window.localStorage.getItem(&#39;currentUser&#39;)){
+    window.location.href = &#39;../Landingpage/landingpage.html&#39;;
+}
+
+CSS:-
+@import url(&#39;https://fonts.googleapis.com/css2?family=Poppins:wght@300&amp;display=swap&#39;);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: &#39;Poppins&#39;, sans-serif;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to top, #c4c5c7 0%, #dcdddf 52%, #ebebeb 100%) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 70px;
+    background-color: #162938;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.5rem;
+    color: #fff;
+    user-select: none;
+}
+
+.navbar a {
+    position: relative;
+    font-size: 1.1rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+}
+.navbar a::after{
+    content: &quot;&quot;;
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: #fff;
+    border-radius: 5px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .5s;
+}
+.navbar a:hover::after{
+    transform-origin: left;
+    transform: scaleX(1);
+}
+.container{
+    margin: 100px 0 0 0 ;
+    display: flex;
+    width: 100%;
+}
+.page-left{
+    width: 50%;
+    padding: 0 20px 0 70px;
+    display: flex;
+    flex-direction: column;
+}
+.pageInfo{
+    display: flex;
+    flex-direction: column;
+    line-height: 40px;
+}
+
+.pageInfo button{
+    width: 100px;
+    padding: 8px;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: 1px solid grey;
+    font-weight: 600;
+    transition: .2s;
+    cursor: pointer;
+}
+.pageInfo button:hover{
+    width: 140px;
+    /* padding: 10px; */
+}
+.login-signup{
+    display: flex;
+    gap: 20px;
+}
+#login{
+    background-color: #162938;
+    color: #fff;
+    border: none;
+}
+.main-page-heading{
+    padding: 0 0 10px 0;
+}
+.page-title{
+    line-height: 20px;
+    padding: 0 0 10px 0;
+}
+.card{
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items:center;
+    width: 250px;
+    height: 450px;
+    margin: 20px 0 20px 0;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    overflow: hidden;
+    position: relative;
+}
+.image-top{
+    text-align: center;
+    width: 100%;
+    height: 50%;
+    background-size: cover;
+}
+.card-body{
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.card-title{
+    padding: 0 0 5px 0;
+    margin: 0;
+    font-size: .8rem;
+    font-weight: 600;
+    color: #333333
+}
+.card-stock{
+    padding: 5px 0 5px 0;
+    color: #df0a0a;
+    font-size: .8rem;
+}
+.card-text{
+    margin: 5px 0;
+    font-size: 1rem;
+    line-height: 1;
+    color: #079212;
+}
+.card-rating{
+    font-size: 0.880rem;
+    color: #666666;
+    margin: 0 0 5px 0;
+}
+.addCart{
+    /* height: 10%; */
+    padding: 10px;
+    background: #000;
+    color: #fff;
+    border: none;
+    width: 250px;
+    margin: 10px 0 0 0;
+    cursor: pointer;
+}
+.page-right{
+    padding: 0 70px 0 0;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.page-right img{
+    width: 100%;
+}
+****************************************************************************************************************************************
+Signup html:-
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Signup&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;./signup.css&quot;&gt;
+    &lt;link rel=&quot;icon&quot; type=&quot;image/x-icon&quot; href=&quot;../images/icon.png&quot;&gt;
+    &lt;script src=&quot;https://kit.fontawesome.com/6dccbbc57d.js&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h2 class=&quot;logo&quot;&gt;Click Away&lt;/h2&gt;
+        &lt;nav class=&quot;navbar&quot;&gt;
+            &lt;a class=&quot;home&quot; href=&quot;../index.html&quot;&gt;Home&lt;/a&gt;
+            &lt;a class=&quot;login&quot; href=&quot;../Login/login.html&quot;&gt;Login&lt;/a&gt;
+            &lt;a class=&quot;signup&quot; href=&quot;./signup.html&quot;&gt;Signup&lt;/a&gt;
+            &lt;a class=&quot;myCart&quot; href=&quot;#&quot;&gt;My Cart&lt;/a&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+    &lt;div class=&quot;wrapper&quot;&gt;
+        &lt;div class=&quot;form-box register&quot;&gt;
+            &lt;h2&gt;Signup&lt;/h2&gt;
+            &lt;form&gt;
+                &lt;div class=&quot;inputbox&quot;&gt;
+                    &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa-solid fa-user&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+                    &lt;input id=&quot;signup-name&quot; type=&quot;text&quot; required&gt;
+                    &lt;label for=&quot;signup-name&quot;&gt;Full Name&lt;/label&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;inputbox&quot;&gt;
+                    &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa-solid fa-envelope&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+                    &lt;input id=&quot;signup-email&quot; type=&quot;email&quot; required&gt;
+                    &lt;label for=&quot;signup-email&quot;&gt;Email&lt;/label&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;inputbox&quot;&gt;
+                    &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa-solid fa-lock&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+                    &lt;input id=&quot;signup-password&quot; type=&quot;password&quot; required&gt;
+                    &lt;label for=&quot;signup-password&quot;&gt;Password&lt;/label&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;inputbox&quot;&gt;
+                    &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa-solid fa-lock&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+                    &lt;input id=&quot;signup-confirm-password&quot; type=&quot;password&quot; required&gt;
+                    &lt;label for=&quot;signup-confirm-password&quot;&gt;Confirm Password&lt;/label&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;forgot&quot;&gt;
+                    &lt;label for=&quot;&quot;&gt;&lt;input id=&quot;checkbox&quot; type=&quot;checkbox&quot; required&gt;I agree to the terms and conditions&lt;/label&gt;
+                &lt;/div&gt;
+                &lt;button class=&quot;signup-button btn&quot; type=&quot;submit&quot;&gt;Signup&lt;/button&gt;
+                &lt;div class=&quot;login-register&quot;&gt;
+                    &lt;p&gt;Already have an account?&lt;a href=&quot;#&quot; class=&quot;login-link&quot;&gt; Login&lt;/a&gt;&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/form&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;script src=&quot;./signup.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+Signup JS:-
+const login = document.querySelector(&#39;.login&#39;);
+const signup = document.querySelector(&#39;.signup&#39;);
+const loginLink = document.querySelector(&#39;.login-link&#39;);
+const home = document.querySelector(&#39;.home&#39;);
+const myCart = document.querySelector(&#39;.myCart&#39;);
+
+myCart.addEventListener(&#39;click&#39;, () =&gt;{
+    alert(&quot;Login to continue!!!&quot;)
+})
+
+const fullName = document.querySelector(&#39;#signup-name&#39;);
+const email = document.querySelector(&#39;#signup-email&#39;);
+const password = document.querySelector(&#39;#signup-password&#39;);
+const confirmPassword = document.querySelector(&#39;#signup-confirm-password&#39;);
+const signupButton = document.querySelector(&#39;.signup-button&#39;);
+const checkbox = document.querySelector(&#39;#checkbox&#39;);
+
+let users = [];
+localStorage.getItem(&#39;users&#39;) ? users = JSON.parse(localStorage.getItem(&#39;users&#39;)) : [];
+
+signupButton.addEventListener(&#39;click&#39;,(e)=&gt;{
+    e.preventDefault();
+    
+    // Name Validation
+    const nameArr = fullName.value.split(&quot; &quot;);
+    if(nameArr.length&lt;1){
+        alert(&#39;Please enter your name and surname!!!&#39;);
+        return false;
+    }
+
+    ///Email Validation
+    if(email.value.indexOf(&#39;@&#39;)&lt;2){
+        alert(&quot;Please enter valid email address!!!&quot;);
+        return false;
+    }
+    else if(email.value.lastIndexOf(&#39;.&#39;)!==email.value.length-4 &amp;&amp; email.value.lastIndexOf(&#39;.&#39;)!==email.value.length-3){
+        alert(&quot;Please enter valid email address!!!&quot;);
+        return false;
+    }
+
+    let sameEmail = false;
+    let userArr = []
+    if(localStorage.getItem(&#39;users&#39;)){
+        userArr = JSON.parse(localStorage.getItem(&#39;users&#39;))
+        if(userArr.filter(user =&gt; user.email==email.value).length!=0){
+            alert(&#39;Email already exists!!! Try another email address!!!&#39;);
+            return false;
+        }
+    }
+
+    //Password Validation
+    if(!password.value.match(/[a-z]/)){
+        alert(&#39;Password must contains at least one lower case letter!!!&#39;);
+        return false;
+    }
+    if(!password.value.match(/[A-Z]/)){
+        alert(&#39;Password must contains at least one upper case letter!!!&#39;);
+        return false;
+    }
+    if(!password.value.match(/[0-9]/)){
+        alert(&#39;Password must contains at least number!!!&#39;);
+        return false;
+    }
+    if(!password.value.match(/[!/@/#/$/%/^/&amp;/*/(/)/+/_/&lt;/&gt;/]/)){
+        alert(&#39;Password must contains at least one symbol!!!&#39;);
+        return false;
+    }
+    if(password.value.length&lt;8 || password.value.length&gt;16){
+        alert(&#39;Password length must be between 8 and 16 characters!!!&#39;);
+        return false;
+    }
+    
+    //Confirm password validation
+    if(password.value!==confirmPassword.value){
+        alert(&quot;Password and Confirm Password should be same!!!&quot;);
+    }
+    if(!checkbox.checked){
+        alert(&#39;Please accept the terms and conditions to continue!!!&#39;);
+    }
+    else{
+        const userData = {
+            name : fullName.value,
+            email : email.value,
+            password : password.value,
+        }
+        users.push(userData);
+        localStorage.setItem(&#39;users&#39;, JSON.stringify(users));
+        window.location.href = &quot;../Login/login.html&quot;;
+        alert(&#39;Signed up successfully!!! Please login to continue!!!&#39;);
+    }
+})
+if(window.localStorage.getItem(&#39;currentUser&#39;)){
+    window.location.href = &#39;../Landingpage/landingpage.html&#39;;
+}
+
+
+
+SignUp CSS:-
+@import url(&#39;https://fonts.googleapis.com/css2?family=Poppins:wght@300&amp;display=swap&#39;);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: &#39;Poppins&#39;, sans-serif;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url(&quot;../images/backgroundLogin.jpg&quot;) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 70px;
+    background-color: #162938;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.5rem;
+    color: #fff;
+    user-select: none;
+}
+
+.navbar a {
+    position: relative;
+    font-size: 1.1rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+}
+.navbar a::after{
+    content: &quot;&quot;;
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: #162938;
+    border-radius: 5px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .5s;
+}
+.navbar a:hover::after{
+    transform-origin: left;
+    transform: scaleX(1);
+}
+.wrapper{
+    margin: 100px 0 40px 0;
+    position: relative;
+    width: 400px;
+    height: 520px;
+    background: transparent;
+    border: 2px solid #ffffff80;
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px #00000080;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.wrapper .form-box{
+    width: 100%;
+    padding: 40px;
+}
+
+.form-box h2{
+    font-size: 1.5rem;
+    color: #162938;
+    text-align: center;
+}
+
+.inputbox{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border-bottom: 2px solid #162938;
+    margin: 30px 0;
+}
+.inputbox label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    color: #162938;
+    font-weight: 500;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.inputbox input:focus~label,
+.inputbox input:valid~label{
+    top: -5px;
+    background: transparent;
+}
+
+.inputbox input{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    color: #162938;
+    font-weight: 600;
+    padding: 0 35px 0 5px;
+}
+.inputbox .icon{
+    position: absolute;
+    right: 8px;
+    font-size: 1.2rem;
+    color: #162938;
+    line-height: 57px;
+}
+
+.forgot{
+    font-size: .9rem;
+    color: #162938;
+    font-weight: 500;
+    margin: -15px 0 15px;
+    display: flex;
+    justify-content: space-between;
+}
+.forgot label input{
+    accent-color: #162938;
+    margin-right: 3px;
+}
+.forgot a{
+    color: #162938;
+    text-decoration: none;
+}
+
+.forgot a:hover{
+    text-decoration: underline;
+}
+.btn{
+    width: 100%;
+    height: 45px;
+    background: #162938;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #fff;
+    font-weight: 500;
+}
+
+.login-register{
+    font-size: .9rem;
+    color: #162938;
+    text-align: center;
+    font-weight: 500;
+    margin: 25px 0 10px;
+}
+
+.login-register p a{
+    color: #162938;
+    text-decoration: none;
+    font-weight: 600;
+}
+.login-register p a:hover{
+    text-decoration: underline;
+}
+****************************************************************************************************************************************
+
+login HTML:- 
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Login&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;./login.css&quot;&gt;
+    &lt;link rel=&quot;icon&quot; type=&quot;image/x-icon&quot; href=&quot;../images/icon.png&quot;&gt;
+    &lt;script src=&quot;https://kit.fontawesome.com/6dccbbc57d.js&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h2 class=&quot;logo&quot;&gt;Click Away&lt;/h2&gt;
+        &lt;nav class=&quot;navbar&quot;&gt;
+            &lt;a class=&quot;home&quot; href=&quot;#&quot;&gt;Home&lt;/a&gt;
+            &lt;a class=&quot;login&quot; href=&quot;#&quot;&gt;Login&lt;/a&gt;
+            &lt;a class=&quot;signup&quot; href=&quot;#&quot;&gt;Signup&lt;/a&gt;
+            &lt;a class=&quot;myCart&quot; href=&quot;#&quot;&gt;My Cart&lt;/a&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+    &lt;div class=&quot;wrapper&quot;&gt;
+        &lt;div class=&quot;form-box login&quot;&gt;
+            &lt;h2&gt;Login&lt;/h2&gt;
+            &lt;form&gt;
+                &lt;div class=&quot;inputbox&quot;&gt;
+                    &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa-regular fa-envelope&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+                    &lt;input id=&quot;login-email&quot; type=&quot;email&quot; required&gt;
+                    &lt;label for=&quot;login-email&quot;&gt;Email&lt;/label&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;inputbox&quot;&gt;
+                    &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa-solid fa-lock&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+                    &lt;input id=&quot;login-password&quot; type=&quot;password&quot; required&gt;
+                    &lt;label for=&quot;login-password&quot;&gt;Password&lt;/label&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;forgot&quot;&gt;
+                    &lt;label for=&quot;&quot;&gt;&lt;input id=&quot;checkbox&quot; type=&quot;checkbox&quot;&gt;Remember me&lt;/label&gt;
+                &lt;/div&gt;
+                &lt;button class=&quot;login-button btn&quot; type=&quot;submit&quot;&gt;Login&lt;/button&gt;
+                &lt;div class=&quot;login-register&quot;&gt;
+                    &lt;p&gt;Don&#39;t have an account?&lt;a href=&quot;#&quot; class=&quot;register-link&quot;&gt; Signup&lt;/a&gt;&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/form&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;script src=&quot;./login.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+Login js:-
+const login = document.querySelector(&#39;.login&#39;);
+const signup = document.querySelector(&#39;.signup&#39;);
+const signupLink = document.querySelector(&#39;.register-link&#39;);
+const home = document.querySelector(&#39;.home&#39;);
+const myCart = document.querySelector(&#39;.myCart&#39;);
+
+signupLink.addEventListener(&quot;click&quot;, () =&gt; {
+    window.location.href = &quot;../Signup/signup.html&quot;;
+})
+home.addEventListener(&quot;click&quot;, () =&gt; {
+    if (localStorage.getItem(&#39;currentUser&#39;)) {
+        window.location.href = &#39;../LandingPage/landingpage.html&#39;;
+    }
+    else {
+        window.location.href = &#39;../index.html&#39;;
+    }
+})
+
+login.addEventListener(&quot;click&quot;, () =&gt; {
+    window.location.href = &quot;./login.html&quot;
+})
+
+signup.addEventListener(&quot;click&quot;, () =&gt; {
+    window.location.href = &quot;../Signup/signup.html&quot;;
+})
+
+myCart.addEventListener(&#39;click&#39;, () =&gt; {
+    alert(&quot;Login to continue!!!&quot;)
+})
+
+const email = document.querySelector(&#39;#login-email&#39;);
+const loginSubmit = document.querySelector(&#39;.login-button&#39;);
+const password = document.querySelector(&#39;#login-password&#39;);
+const users = JSON.parse(localStorage.getItem(&#39;users&#39;));
+const currentUser = {};
+
+loginSubmit.addEventListener(&#39;click&#39;, (e) =&gt; {
+    e.preventDefault();
+    let countEmail = 0;
+    users.map(data =&gt; {
+        if (data.email === email.value &amp;&amp; data.password === password.value) {
+            countEmail++;
+            currentUser.email = data.email;
+            currentUser.name = data.name;
+            currentUser.password = data.password;
+        }
+        if (countEmail == 0) {
+            alert(&quot;Invalid email or password!!!&quot;);
+            return false;
+        }
+        else {
+            currentUser.token = generateToken();
+            window.localStorage.setItem(&#39;currentUser&#39;, (JSON.stringify(currentUser)));
+            alert(&#39;Logged in successfully!!!&#39;)
+            window.location.href = &#39;../Landingpage/landingpage.html&#39;;
+        }
+    });
+
+})
+if (window.localStorage.getItem(&#39;currentUser&#39;)) {
+    window.location.href = &#39;../Landingpage/landingpage.html&#39;;
+}
+function generateToken() {
+    const chars = &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789&quot;;
+    const charsLength = chars.length;
+    let randomStr = String(Math.random()).slice(2, 18);
+    let token = &quot;&quot;;
+    randomStr.split(&quot;&quot;).forEach(digit =&gt; {
+        token += chars.charAt(parseInt(digit, 10) % charsLength)
+    });
+    return token;
+}
+
+Login CSS:-
+@import url(&#39;https://fonts.googleapis.com/css2?family=Poppins:wght@300&amp;display=swap&#39;);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: &#39;Poppins&#39;, sans-serif;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url(&quot;../images/backgroundLogin.jpg&quot;) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 70px;
+    background-color: #162938;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.5rem;
+    color: #fff;
+    user-select: none;
+}
+
+.navbar a {
+    position: relative;
+    font-size: 1.1rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+}
+.navbar a::after{
+    content: &quot;&quot;;
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: #fff;
+    border-radius: 5px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .5s;
+}
+.navbar a:hover::after{
+    transform-origin: left;
+    transform: scaleX(1);
+}
+.wrapper{
+    position: relative;
+    width: 400px;
+    height: 420px;
+    background: transparent;
+    border: 2px solid #ffffff80;
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px #00000080;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.wrapper .form-box{
+    width: 100%;
+    padding: 40px;
+}
+
+.form-box h2{
+    font-size: 1.5rem;
+    color: #162938;
+    text-align: center;
+}
+
+.inputbox{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border-bottom: 2px solid #162938;
+    margin: 30px 0;
+}
+.inputbox label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    color: #162938;
+    font-weight: 500;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.inputbox input:focus~label,
+.inputbox input:valid~label{
+    top: -5px;
+    background: transparent;
+}
+
+.inputbox input{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    color: #162938;
+    font-weight: 600;
+    padding: 0 35px 0 5px;
+}
+.inputbox .icon{
+    position: absolute;
+    right: 8px;
+    font-size: 1.2rem;
+    color: #162938;
+    line-height: 57px;
+}
+
+.forgot{
+    font-size: .9rem;
+    color: #162938;
+    font-weight: 500;
+    margin: -15px 0 15px;
+    display: flex;
+    justify-content: space-between;
+}
+.forgot label input{
+    accent-color: #162938;
+    margin-right: 3px;
+}
+.forgot a{
+    color: #162938;
+    text-decoration: none;
+}
+
+.forgot a:hover{
+    text-decoration: underline;
+}
+.btn{
+    width: 100%;
+    height: 45px;
+    background: #162938;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #fff;
+    font-weight: 500;
+}
+
+.login-register{
+    font-size: .9rem;
+    color: #162938;
+    text-align: center;
+    font-weight: 500;
+    margin: 25px 0 10px;
+}
+
+.login-register p a{
+    color: #162938;
+    text-decoration: none;
+    font-weight: 600;
+}
+.login-register p a:hover{
+    text-decoration: underline;
+}
+****************************************************************************************************************************************
+
+Landingpage Html:-
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Click Away&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;./landingpage.css&quot;&gt;
+    &lt;link rel=&quot;icon&quot; type=&quot;image/x-icon&quot; href=&quot;../images/icon.png&quot;&gt;
+    &lt;script src=&quot;https://kit.fontawesome.com/6dccbbc57d.js&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h2 class=&quot;logo&quot;&gt;Click Away&lt;/h2&gt;
+        &lt;nav class=&quot;navbar&quot;&gt;
+            &lt;a class=&quot;home&quot; href=&quot;#&quot;&gt;Home&lt;/a&gt;
+            &lt;a class=&quot;profile&quot; href=&quot;#&quot;&gt;My Profile&lt;/a&gt;
+            &lt;a class=&quot;myCart&quot; href=&quot;#&quot;&gt;My Cart&lt;/a&gt;
+            &lt;a class=&quot;logout&quot; href=&quot;#&quot;&gt;Logout&lt;/a&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+    &lt;div class=&quot;my-container&quot;&gt;
+        &lt;div class=&quot;left&quot;&gt;
+            &lt;div class=&quot;rating&quot;&gt;
+                &lt;h3&gt;Filter items&lt;/h3&gt;
+                &lt;h4&gt;Rating&lt;/h4&gt;
+                &lt;input type=&quot;range&quot; min=&quot;0&quot; max=&quot;5&quot; value=&quot;0&quot; class=&quot;slider&quot; id=&quot;myRange&quot;&gt;
+                &lt;div class=&quot;num&quot;&gt;
+                    &lt;div&gt;Default&lt;/div&gt;
+                    &lt;div&gt;5&lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;price-range&quot;&gt;
+                &lt;h4&gt;Price&lt;/h4&gt;
+                &lt;div class=&quot;product-price&quot;&gt;
+                    &lt;label for=&quot;&quot;&gt;&lt;input id=&quot;checkbox0&quot; type=&quot;checkbox&quot;&gt; $0 to $25&lt;/label&gt;
+                    &lt;label for=&quot;&quot;&gt;&lt;input id=&quot;checkbox25&quot; type=&quot;checkbox&quot;&gt; $25 to $50&lt;/label&gt;
+                    &lt;label for=&quot;&quot;&gt;&lt;input id=&quot;checkbox50&quot; type=&quot;checkbox&quot;&gt; $50 to $100&lt;/label&gt;
+                    &lt;label for=&quot;&quot;&gt;&lt;input id=&quot;checkbox100&quot; type=&quot;checkbox&quot;&gt; $100 onwards&lt;/label&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;right&quot;&gt;
+            &lt;div id=&quot;snackbar&quot;&gt;Item added in your cart!!&lt;/div&gt;
+            &lt;div class=&quot;search&quot;&gt;
+                &lt;button class=&quot;btn-search&quot;&gt;&lt;i class=&quot;fas fa-search&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+                &lt;input type=&quot;text&quot; class=&quot;input-search&quot; placeholder=&quot;Search&quot;&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;categories&quot;&gt;
+                &lt;p class=&quot;selectCategories&quot; id=&quot;all&quot;&gt;All&lt;/p&gt;
+                &lt;p class=&quot;selectCategories&quot; id=&quot;mens&quot;&gt;Mens&lt;/p&gt;
+                &lt;p class=&quot;selectCategories&quot; id=&quot;womens&quot;&gt;Womens&lt;/p&gt;
+                &lt;p class=&quot;selectCategories&quot; id=&quot;jewellery&quot;&gt;Jewellery&lt;/p&gt;
+                &lt;p class=&quot;selectCategories&quot; id=&quot;electronics&quot;&gt;Electronics&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;mens-clothing clothings&quot;&gt;
+                &lt;h4&gt;Men&#39;s Clothings&lt;/h4&gt;
+                &lt;div class=&quot;men-card-wrapper wrapper&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;womens-clothing clothings&quot;&gt;
+                &lt;h4&gt;Women&#39;s Clothings&lt;/h4&gt;
+                &lt;div class=&quot;women-card-wrapper wrapper&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;jewellery clothings&quot;&gt;
+                &lt;h4&gt;Jewellery&lt;/h4&gt;
+                &lt;div class=&quot;jewellery-card-wrapper wrapper&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;electronics clothings&quot;&gt;
+                &lt;h4&gt;Electronics&lt;/h4&gt;
+                &lt;div class=&quot;electronics-card-wrapper wrapper&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;script src=&quot;./landingpage.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+
+LandingPage:- JS:-
+const logout = document.querySelector(&#39;.logout&#39;);
+const profile = document.querySelector(&#39;.profile&#39;);
+const home = document.querySelector(&#39;.home&#39;);
+const myCart = document.querySelector(&#39;.myCart&#39;);
+
+
+home.addEventListener(&quot;click&quot;, () =&gt; {
+    if (localStorage.getItem(&#39;currentUser&#39;)) {
+        window.location.href = &#39;./landingpage.html&#39;;
+    }
+    else {
+        window.location.href = &#39;../index.html&#39;;
+    }
+})
+
+logout.addEventListener(&quot;click&quot;, () =&gt; {
+    window.location.href = &quot;../Login/login.html&quot;;
+    localStorage.removeItem(&#39;currentUser&#39;);
+})
+
+profile.addEventListener(&quot;click&quot;, () =&gt; {
+    window.location.href = &quot;../Profile/profile.html&quot;;
+})
+
+myCart.addEventListener(&#39;click&#39;, () =&gt; {
+    window.location.href = &#39;../Mycart/mycart.html&#39;;
+})
+
+const search = document.querySelector(&#39;#search&#39;);
+
+const menCardWrapper = document.querySelector(&#39;.men-card-wrapper&#39;);
+const womenCardWrapper = document.querySelector(&#39;.women-card-wrapper&#39;);
+const jewelleryCardWrapper = document.querySelector(&#39;.jewellery-card-wrapper&#39;);
+const electronicsCardWrapper = document.querySelector(&#39;.electronics-card-wrapper&#39;);
+const myRating = document.querySelector(&#39;#myRange&#39;);
+let myValue = myRating.value;
+
+let addCart = [];
+let addCartArr = [];
+const myData = [];
+localStorage.getItem(&#39;myCart&#39;) ? addCartArr = JSON.parse(localStorage.getItem(&#39;myCart&#39;)) : [];
+fetch(&#39;https://fakestoreapi.com/products&#39;)
+    .then(resolve =&gt; resolve.json())
+    .then(data =&gt; {
+        data.map(product =&gt; {
+            myData.push(product.title);
+            if (product.category === &quot;men&#39;s clothing&quot;) {
+                menCardWrapper.innerHTML += `
+                &lt;div class=&quot;card&quot;&gt;
+                    &lt;img class=&quot;image-top&quot; src=${product.image} alt=&quot;${product.title}&quot;&gt;
+                    &lt;div class=&quot;card-body&quot;&gt;
+                        &lt;h5 class=&quot;card-title&quot;&gt;${product.title}&lt;/h5&gt;
+                        &lt;p class=&quot;card-text&quot;&gt;&amp;#36;&lt;span class=&quot;card-price&quot;&gt;${product.price}&lt;/span&gt;&lt;/p&gt;
+                        &lt;p class=&quot;card-stock&quot;&gt;Hurry up only ${product.rating.count} items left!!!&lt;/p&gt;
+                        &lt;p class=&quot;card-rating&quot;&gt;${product.rating.rate} &amp;#9733;&lt;/p&gt;   
+                    &lt;/div&gt;
+                    &lt;button class=&#39;addCart&#39;&gt;Add to cart&lt;/button&gt;
+                &lt;/div&gt;`;
+            }
+            if (product.category === &quot;women&#39;s clothing&quot;) {
+                womenCardWrapper.innerHTML += `
+                &lt;div class=&quot;card&quot;&gt;
+                    &lt;img class=&quot;image-top&quot; src=${product.image} alt=&quot;${product.title}&quot;&gt;
+                    &lt;div class=&quot;card-body&quot;&gt;
+                        &lt;h5 class=&quot;card-title&quot;&gt;${product.title}&lt;/h5&gt;
+                        &lt;p class=&quot;card-text&quot;&gt;&amp;#36;&lt;span class=&quot;card-price&quot;&gt;${product.price}&lt;/span&gt;&lt;/p&gt;
+                        &lt;p class=&quot;card-stock&quot;&gt;Hurry up only ${product.rating.count} items left!!!&lt;/p&gt;
+                        &lt;p class=&quot;card-rating&quot;&gt;${product.rating.rate} &amp;#9733;&lt;/p&gt;   
+                    &lt;/div&gt;
+                    &lt;button class=&#39;addCart&#39;&gt;Add to cart&lt;/button&gt;
+                &lt;/div&gt;`;
+            }
+            if (product.category === &quot;jewelery&quot;) {
+                jewelleryCardWrapper.innerHTML += `
+                &lt;div class=&quot;card&quot;&gt;
+                    &lt;img class=&quot;image-top&quot; src=${product.image} alt=&quot;${product.title}&quot;&gt;
+                    &lt;div class=&quot;card-body&quot;&gt;
+                        &lt;h5 class=&quot;card-title&quot;&gt;${product.title}&lt;/h5&gt;
+                        &lt;p class=&quot;card-text&quot;&gt;&amp;#36;&lt;span class=&quot;card-price&quot;&gt;${product.price}&lt;/span&gt;&lt;/p&gt;
+                        &lt;p class=&quot;card-stock&quot;&gt;Hurry up only ${product.rating.count} items left!!!&lt;/p&gt;
+                        &lt;p class=&quot;card-rating&quot;&gt;${product.rating.rate} &amp;#9733;&lt;/p&gt;   
+                    &lt;/div&gt;
+                    &lt;button class=&#39;addCart&#39;&gt;Add to cart&lt;/button&gt;
+                &lt;/div&gt;`;
+            }
+            if (product.category === &quot;electronics&quot;) {
+                electronicsCardWrapper.innerHTML += `
+                &lt;div class=&quot;card&quot;&gt;
+                    &lt;img class=&quot;image-top&quot; src=${product.image} alt=&quot;${product.title}&quot;&gt;
+                    &lt;div class=&quot;card-body&quot;&gt;
+                        &lt;h5 class=&quot;card-title&quot;&gt;${product.title}&lt;/h5&gt;
+                        &lt;p class=&quot;card-text&quot;&gt;&amp;#36;&lt;span class=&quot;card-price&quot;&gt;${product.price}&lt;/span&gt;&lt;/p&gt;
+                        &lt;p class=&quot;card-stock&quot;&gt;Hurry up only ${product.rating.count} items left!!!&lt;/p&gt;
+                        &lt;p class=&quot;card-rating&quot;&gt;${product.rating.rate} &amp;#9733;&lt;/p&gt;   
+                    &lt;/div&gt;
+                    &lt;button class=&#39;addCart&#39;&gt;Add to cart&lt;/button&gt;
+                &lt;/div&gt;`;
+            }
+        })
+        myRating.oninput = function () {
+            myValue = this.value;
+            let userCard = &quot;&quot;;
+            document.querySelectorAll(&#39;.card&#39;) ? userCard = document.querySelectorAll(&#39;.card&#39;) : userCard = &quot;&quot;;
+            userCard.forEach(function (elem) {
+                let cardElem = parseInt(elem.querySelector(&#39;.card-rating&#39;).innerText);
+                elem.classList.add(&#39;hide&#39;);
+                if (cardElem == myValue) {
+                    elem.classList.remove(&#39;hide&#39;);
+                }
+                if (myValue == 0) {
+                    elem.classList.remove(&#39;hide&#39;);
+                }
+            })
+        }
+        const zero = document.querySelector(&#39;#checkbox0&#39;);
+        const twentyfive = document.querySelector(&#39;#checkbox25&#39;);
+        const fifty = document.querySelector(&#39;#checkbox50&#39;);
+        const hundred = document.querySelector(&#39;#checkbox100&#39;);
+        // zero.checked = false;
+        zero.addEventListener(&#39;click&#39;, () =&gt; {
+            if (zero.checked == false) {
+                zero.checked = false;
+                let userCard = &quot;&quot;;
+                document.querySelectorAll(&#39;.card&#39;) ? userCard = document.querySelectorAll(&#39;.card&#39;) : userCard = &quot;&quot;;
+                userCard.forEach(function (elem) {
+                    let cardElem = parseInt(elem.querySelector(&#39;.card-price&#39;).innerText);
+                    elem.classList.remove(&#39;hide&#39;);
+                })
+            }
+            else {
+                zero.checked = true;
+                twentyfive.checked = false;
+                fifty.checked = false;
+                hundred.checked = false;
+                let userCard = &quot;&quot;;
+                document.querySelectorAll(&#39;.card&#39;) ? userCard = document.querySelectorAll(&#39;.card&#39;) : userCard = &quot;&quot;;
+                userCard.forEach(function (elem) {
+                    let cardElem = parseInt(elem.querySelector(&#39;.card-price&#39;).innerText);
+                    elem.classList.add(&#39;hide&#39;);
+                    if (cardElem &gt;= 0 &amp;&amp; cardElem &lt;= 25) {
+                        elem.classList.remove(&#39;hide&#39;);
+                    }
+                })
+            }
+
+        })
+        twentyfive.addEventListener(&#39;click&#39;, () =&gt; {
+            if (twentyfive.checked == false) {
+                twentyfive.checked = false;
+                let userCard = &quot;&quot;;
+                document.querySelectorAll(&#39;.card&#39;) ? userCard = document.querySelectorAll(&#39;.card&#39;) : userCard = &quot;&quot;;
+                userCard.forEach(function (elem) {
+                    let cardElem = parseInt(elem.querySelector(&#39;.card-price&#39;).innerText);
+                    elem.classList.remove(&#39;hide&#39;);
+                })
+            }
+            else {
+                zero.checked = false;
+                twentyfive.checked = true;
+                fifty.checked = false;
+                hundred.checked = false;
+                let userCard = &quot;&quot;;
+                document.querySelectorAll(&#39;.card&#39;) ? userCard = document.querySelectorAll(&#39;.card&#39;) : userCard = &quot;&quot;;
+                userCard.forEach(function (elem) {
+                    let cardElem = parseInt(elem.querySelector(&#39;.card-price&#39;).innerText);
+                    elem.classList.add(&#39;hide&#39;);
+                    if (cardElem &gt;= 25 &amp;&amp; cardElem &lt;= 50) {
+                        elem.classList.remove(&#39;hide&#39;);
+                    }
+                })
+            }
+
+        })
+        fifty.addEventListener(&#39;click&#39;, () =&gt; {
+            if (fifty.checked == false) {
+                fifty.checked = false;
+                let userCard = &quot;&quot;;
+                document.querySelectorAll(&#39;.card&#39;) ? userCard = document.querySelectorAll(&#39;.card&#39;) : userCard = &quot;&quot;;
+                userCard.forEach(function (elem) {
+                    let cardElem = parseInt(elem.querySelector(&#39;.card-price&#39;).innerText);
+                    elem.classList.remove(&#39;hide&#39;);
+                })
+            }
+            else {
+                zero.checked = false;
+                twentyfive.checked = false;
+                fifty.checked = true;
+                hundred.checked = false;
+                let userCard = &quot;&quot;;
+                document.querySelectorAll(&#39;.card&#39;) ? userCard = document.querySelectorAll(&#39;.card&#39;) : userCard = &quot;&quot;;
+                userCard.forEach(function (elem) {
+                    let cardElem = parseInt(elem.querySelector(&#39;.card-price&#39;).innerText);
+                    elem.classList.add(&#39;hide&#39;);
+                    if (cardElem &gt;= 50 &amp;&amp; cardElem &lt;= 100) {
+                        elem.classList.remove(&#39;hide&#39;);
+                    }
+                })
+            }
+
+        })
+        hundred.addEventListener(&#39;click&#39;, () =&gt; {
+            if (hundred.checked == false) {
+                hundred.checked = false;
+                let userCard = &quot;&quot;;
+                document.querySelectorAll(&#39;.card&#39;) ? userCard = document.querySelectorAll(&#39;.card&#39;) : userCard = &quot;&quot;;
+                userCard.forEach(function (elem) {
+                    let cardElem = parseInt(elem.querySelector(&#39;.card-price&#39;).innerText);
+                    elem.classList.remove(&#39;hide&#39;);
+                })
+            }
+            else {
+                zero.checked = false;
+                twentyfive.checked = false;
+                fifty.checked = false;
+                hundred.checked = true;
+                let userCard = &quot;&quot;;
+                document.querySelectorAll(&#39;.card&#39;) ? userCard = document.querySelectorAll(&#39;.card&#39;) : userCard = &quot;&quot;;
+                userCard.forEach(function (elem) {
+                    let cardElem = parseInt(elem.querySelector(&#39;.card-price&#39;).innerText);
+                    elem.classList.add(&#39;hide&#39;);
+                    if (cardElem &gt;= 100) {
+                        elem.classList.remove(&#39;hide&#39;);
+                    }
+                })
+            }
+        })
+
+        const search = document.querySelector(&#39;.input-search&#39;);
+        const searchButton = document.querySelector(&#39;.btn-search&#39;);
+
+        search.addEventListener(&#39;input&#39;, (e) =&gt; {
+            
+            const inputSearch = search.value.toLowerCase();
+            let userCard = &quot;&quot;;
+            document.querySelectorAll(&#39;.card&#39;) ? userCard = document.querySelectorAll(&#39;.card&#39;) : userCard = &quot;&quot;;
+            userCard.forEach(function (elem) {
+                elem.classList.add(&#39;hide&#39;);
+                let cardElem = elem.querySelector(&#39;.card-title&#39;).innerText.toLowerCase();
+                if(cardElem.includes(inputSearch)){
+                    elem.classList.remove(&#39;hide&#39;);
+                }
+            })
+            
+        })
+
+
+        addCart = document.querySelectorAll(&#39;.addCart&#39;);
+        let count = 0;
+        let idCount = 0;
+        addCart.forEach((elem) =&gt;{
+            
+            elem.setAttribute(&#39;id&#39;, count++);
+            elem.addEventListener(&quot;click&quot;, function () {
+                let x = document.getElementById(&quot;snackbar&quot;);
+                x.className = &quot;show&quot;;
+                setTimeout(function () { x.className = x.className.replace(&quot;show&quot;, &quot;&quot;); }, 1500);
+                const myProd = {
+                    id: idCount++,
+                    img: data[elem.id].image,
+                    title: data[elem.id].title,
+                    price: data[elem.id].price,
+                }
+                addCartArr.push(myProd);
+                localStorage.setItem(&#39;myCart&#39;, JSON.stringify(addCartArr))
+            });
+        });
+
+        const allProd = document.getElementById(&#39;all&#39;);
+        const menProd = document.getElementById(&#39;mens&#39;);
+        const womenProd = document.getElementById(&#39;womens&#39;);
+        const jewelleryProd = document.getElementById(&#39;jewellery&#39;);
+        const electronicsProd = document.getElementById(&#39;electronics&#39;);
+        const menCard = document.querySelector(&#39;.mens-clothing&#39;);
+        const womenCard = document.querySelector(&#39;.womens-clothing&#39;);
+        const jewelleryCard = document.querySelector(&#39;.jewellery&#39;);
+        const electronicsCard = document.querySelector(&#39;.electronics&#39;);
+        const categories = document.querySelectorAll(&#39;.selectCategories&#39;);
+        const clothings = document.querySelectorAll(&#39;.clothings&#39;);
+
+        allProd.addEventListener(&#39;click&#39;, () =&gt; {
+            categories.forEach(function (elem) {
+                elem.style.color = &#39;#162938&#39;;
+                elem.style.backgroundColor = &#39;#f0e6e6&#39;;
+            })
+            clothings.forEach(function (elem) {
+                elem.classList.remove(&#39;hide&#39;);
+            })
+            allProd.style.color = &#39;#fff&#39;;
+            allProd.style.backgroundColor = &#39;#000&#39;;
+        })
+
+        menProd.addEventListener(&#39;click&#39;, () =&gt; {
+            categories.forEach(function (elem) {
+                elem.style.color = &#39;#162938&#39;;
+                elem.style.backgroundColor = &#39;#f0e6e6&#39;;
+            })
+            clothings.forEach(function (elem) {
+                elem.classList.add(&#39;hide&#39;);
+            })
+            menCard.classList.remove(&#39;hide&#39;);
+            menProd.style.color = &#39;#fff&#39;;
+            menProd.style.backgroundColor = &#39;#000&#39;;
+        })
+
+        womenProd.addEventListener(&#39;click&#39;, () =&gt; {
+            categories.forEach(function (elem) {
+                elem.style.color = &#39;#162938&#39;;
+                elem.style.backgroundColor = &#39;#f0e6e6&#39;;
+            })
+            clothings.forEach(function (elem) {
+                elem.classList.add(&#39;hide&#39;)
+            })
+            womenCard.classList.remove(&#39;hide&#39;);
+            womenProd.style.color = &#39;#fff&#39;;
+            womenProd.style.backgroundColor = &#39;#000&#39;;
+        })
+
+        jewelleryProd.addEventListener(&#39;click&#39;, () =&gt; {
+            categories.forEach(function (elem) {
+                elem.style.color = &#39;#162938&#39;;
+                elem.style.backgroundColor = &#39;#f0e6e6&#39;;
+            })
+            clothings.forEach(function (elem) {
+                elem.classList.add(&#39;hide&#39;)
+            })
+            jewelleryCard.classList.remove(&#39;hide&#39;);
+            jewelleryProd.style.color = &#39;#fff&#39;;
+            jewelleryProd.style.backgroundColor = &#39;#000&#39;;
+        })
+
+        electronicsProd.addEventListener(&#39;click&#39;, () =&gt; {
+            categories.forEach(function (elem) {
+                elem.style.color = &#39;#162938&#39;;
+                elem.style.backgroundColor = &#39;#f0e6e6&#39;;
+            })
+            clothings.forEach(function (elem) {
+                elem.classList.add(&#39;hide&#39;)
+            })
+            electronicsCard.classList.remove(&#39;hide&#39;);
+            electronicsProd.style.color = &#39;#fff&#39;;
+            electronicsProd.style.backgroundColor = &#39;#000&#39;;
+        })
+    })
+
+LandingPage:- CSS
+@import url(&#39;https://fonts.googleapis.com/css2?family=Poppins:wght@300&amp;display=swap&#39;);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: &#39;Poppins&#39;, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(to top, #c4c5c7 0%, #dcdddf 52%, #ebebeb 100%) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 70px;
+    background-color: #162938;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.5rem;
+    color: #fff;
+    user-select: none;
+}
+
+.navbar a {
+    position: relative;
+    font-size: 1.1rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+}
+
+.navbar a::after {
+    content: &quot;&quot;;
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: #fff;
+    border-radius: 5px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .5s;
+}
+
+.navbar a:hover::after {
+    transform-origin: left;
+    transform: scaleX(1);
+}
+
+.my-container {
+    width: 100%;
+    display: flex;
+}
+
+.left {
+    width: 20%;
+    background: #162938;
+    color: #fff;
+    padding: 50px 0 0 0;
+    height: 100vh;
+    position: fixed;
+    overflow-y: scroll;
+    z-index: 100;
+    margin: 15px 0 0 0;
+}
+
+
+.rating {
+    /* margin: 15px 0 0 0; */
+    border-top: 1px solid #dcdddf;
+    border-bottom: 1px solid #dcdddf;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 20px 10px 20px;
+}
+
+.num {
+    display: flex;
+    justify-content: space-between;
+}
+
+.slider {
+    margin: 10px 0 0 0;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;
+    background-color: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .5s;
+    transition: opacity .5s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #333333;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #333333;
+    cursor: pointer;
+}
+
+.price-range {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 5px 10px 20px;
+}
+
+.product-price {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0 0 10px 0;
+}
+
+.product-price label input {
+    accent-color: #162938;
+    margin-right: 3px;
+}
+
+.right {
+    position: relative;
+    left: 20%;
+    width: 80%;
+    margin: 50px 0 0 0;
+    padding: 40px 30px 10px 30px;
+}
+
+.input-search {
+    height: 50px;
+    width: 100%;
+    border-style: none;
+    font-size: .9rem;
+    letter-spacing: 2px;
+    outline: none;
+    border-radius: 20px;
+    background-color: #dcdddf;
+    padding: 20px;
+    color: #162938;
+}
+
+.input-search::placeholder {
+    color: #666666;
+    font-size: 18px;
+    letter-spacing: 2px;
+    font-weight: 100;
+}
+
+.btn-search {
+    width: 50px;
+    height: 50px;
+    border-style: none;
+    font-size: 20px;
+    font-weight: bold;
+    outline: none;
+    cursor: pointer;
+    border-radius: 50%;
+    position: absolute;
+    right: 30px;
+    color: #666666;
+    background-color: transparent;
+    pointer-events: painted;
+}
+
+.categories {
+    width: 100%;
+    margin: 15px 0 0 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.categories p {
+    text-align: center;
+    background-color: #f0e6e6;
+    border: 1px solid #162938;
+    color: #162938;
+    padding: 5px;
+    width: 150px;
+    border-radius: 10px;
+    min-width: 50px;
+    cursor: pointer;
+}
+
+#all {
+    background-color: #000;
+    color: #fff;
+}
+
+.clothings {
+    padding: 15px 0 0 0;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.wrapper {
+    width: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    gap: 10px;
+}
+
+.card {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 300px;
+    min-width: 300px;
+    height: 420px;
+    margin: 20px 0 20px 0;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    position: relative;
+}
+
+.image-top {
+    text-align: center;
+    width: 100%;
+    height: 50%;
+    background-size: cover;
+}
+
+.card-body {
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-title {
+    padding: 0 0 5px 0;
+    margin: 0;
+    font-size: .8rem;
+    font-weight: 600;
+    color: #333333
+}
+
+.card-stock {
+    padding: 5px 0 5px 0;
+    color: #df0a0a;
+    font-size: .8rem;
+}
+
+.card-text {
+    margin: 5px 0;
+    font-size: 1rem;
+    color: #079212;
+}
+
+.card-rating {
+    font-size: 0.880rem;
+    color: #666666;
+    margin: 0 0 5px 0;
+}
+
+.addCart {
+    padding: 10px;
+    background: #000;
+    color: #fff;
+    border: none;
+    width: 100%;
+    margin: 10px 0 0 0;
+    cursor: pointer;
+}
+
+.hide {
+    display: none;
+}
+
+#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    font-size: 17px;
+  }
+  
+  #snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  }
+  
+  @-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+  }
+  
+  @keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+  }
+  
+  @-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+  }
+  
+  @keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+  }
+****************************************************************************************************************************************
+
+profile HTML:-
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;My Profile&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;./profile.css&quot;&gt;
+    &lt;link rel=&quot;icon&quot; type=&quot;image/x-icon&quot; href=&quot;../images/icon.png&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h2 class=&quot;logo&quot;&gt;Click Away&lt;/h2&gt;
+        &lt;nav class=&quot;navbar&quot;&gt;
+            &lt;a class=&quot;home&quot; href=&quot;#&quot;&gt;Home&lt;/a&gt;
+            &lt;a class=&quot;profile&quot; href=&quot;#&quot;&gt;My Profile&lt;/a&gt;
+            &lt;a class=&quot;myCart&quot; href=&quot;#&quot;&gt;My Cart&lt;/a&gt;
+            &lt;a class=&quot;logout&quot; href=&quot;#&quot;&gt;Logout&lt;/a&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+    &lt;div class=&quot;container&quot;&gt;
+        &lt;div class=&quot;profile&quot;&gt;
+            &lt;h3&gt;&lt;u&gt;My Profile&lt;/u&gt;&lt;/h3&gt;
+            &lt;p&gt;Name: &lt;strong&gt;&lt;span class=&quot;name&quot;&gt;My Name&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+            &lt;p&gt;Email: &lt;strong&gt;&lt;span class=&quot;email&quot;&gt;My Email&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;change&quot;&gt;
+            &lt;h3&gt;&lt;u&gt;Change Password&lt;/u&gt;&lt;/h3&gt;
+            &lt;button class=&quot;changePass&quot;&gt;Click Here&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;changePassword hide&quot;&gt;
+        &lt;div class=&quot;notification&quot;&gt;&lt;/div&gt;
+        &lt;form&gt;
+            &lt;div class=&quot;mb-3&quot;&gt;
+                &lt;input type=&quot;password&quot; class=&quot;form-control&quot; id=&quot;oldPassword&quot; placeholder=&quot;Old Password&quot;
+                    aria-describedby=&quot;oldPasswordHelp&quot;&gt;
+                &lt;div id=&quot;oldPasswordHelp&quot; class=&quot;form-text&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;mb-3&quot;&gt;
+                &lt;input type=&quot;password&quot; class=&quot;form-control&quot; id=&quot;newPassword&quot; placeholder=&quot;New Password&quot;
+                    aria-describedby=&quot;newPasswordHelp&quot;&gt;
+                &lt;div id=&quot;newPasswordHelp&quot; class=&quot;form-text&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;mb-3&quot;&gt;
+                &lt;input type=&quot;password&quot; class=&quot;form-control&quot; id=&quot;confirmNewPassword&quot; placeholder=&quot;Confirm New Password&quot;
+                    aria-describedby=&quot;confirmNewPasswordHelp&quot;&gt;
+                &lt;div id=&quot;confirmNewPasswordHelp&quot; class=&quot;form-text&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; id=&quot;change&quot;&gt;Change&lt;/button&gt;
+            &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; id=&quot;logout&quot;&gt;Logout&lt;/button&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+    &lt;script src=&quot;./profile.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+
+profile Js:-
+const logoutNav = document.querySelector(&#39;.logout&#39;);
+const profile = document.querySelector(&#39;.profile&#39;);
+const home = document.querySelector(&#39;.home&#39;);
+const myCart = document.querySelector(&#39;.myCart&#39;);
+
+
+home.addEventListener(&quot;click&quot;, () =&gt; {
+    if (localStorage.getItem(&#39;currentUser&#39;)) {
+        window.location.href = &#39;../Landingpage/landingpage.html&#39;;
+        changePassContainer.classList.add(&#39;hide&#39;);
+    }
+    else {
+        window.location.href = &#39;../index.html&#39;;
+    }
+})
+
+logoutNav.addEventListener(&quot;click&quot;, () =&gt; {
+    window.location.href = &quot;../Login/login.html&quot;;
+    localStorage.removeItem(&#39;currentUser&#39;);
+    changePassContainer.classList.add(&#39;hide&#39;);
+})
+
+profile.addEventListener(&quot;click&quot;, () =&gt; {
+    window.location.href = &quot;./profile.html&quot;;
+    changePassContainer.classList.add(&#39;hide&#39;);
+})
+
+myCart.addEventListener(&#39;click&#39;, () =&gt; {
+    window.location.href = &#39;../Mycart/mycart.html&#39;;
+    changePassContainer.classList.add(&#39;hide&#39;);
+})
+
+const changePassContainer = document.querySelector(&#39;.changePassword&#39;);
+const changePass = document.querySelector(&#39;.changePass&#39;);
+changePass.addEventListener(&#39;click&#39;,()=&gt;{
+    changePassContainer.classList.remove(&#39;hide&#39;);
+})
+
+const currentUser = JSON.parse(localStorage.getItem(&#39;currentUser&#39;));
+const myName = document.querySelector(&#39;.name&#39;);
+const myEmail = document.querySelector(&#39;.email&#39;);
+console.log(currentUser);
+
+myName.innerHTML = currentUser.name;
+myEmail.innerHTML = currentUser.email;
+
+
+const users = JSON.parse(window.localStorage.getItem(&#39;users&#39;));
+
+const oldPassword = document.querySelector(&#39;#oldPassword&#39;);
+const oldPasswordWarning = document.querySelector(&#39;#oldPasswordHelp&#39;);
+const newPassword = document.querySelector(&#39;#newPassword&#39;);
+const newPasswordWarning = document.querySelector(&#39;#newPasswordHelp&#39;);
+const confirmNewPassword = document.querySelector(&#39;#confirmNewPassword&#39;);
+const confirmNewPasswordWarning = document.querySelector(&#39;#confirmNewPasswordHelp&#39;);
+const change = document.querySelector(&#39;#change&#39;);
+const logout = document.querySelector(&#39;#logout&#39;);
+const notification = document.querySelector(&#39;.notification&#39;);
+
+
+change.addEventListener(&#39;click&#39;,(e) =&gt;{
+    e.preventDefault();
+    if(oldPassword.value !== currentUser.password){
+        oldPasswordWarning.innerHTML = &#39;Entered password is not same as Current Password!&#39;;
+        notification.innerHTML = &#39;&#39;;
+        return false;
+    }
+    else{
+        oldPasswordWarning.innerHTML = &#39;&#39;;
+    }
+    //password validation
+    //1 Uppercase
+    if(!newPassword.value.match(/[A-Z]/)){
+        newPasswordWarning.innerHTML = &#39;Password should contain one upper case, one lowercase, one number, and one symbol!&#39;;
+        notification.innerHTML = &#39;&#39;;
+        return false;
+    }
+    //lowercase
+    if(!newPassword.value.match(/[a-z]/)){
+        newPasswordWarning.innerHTML = &#39;Password should contain one upper case, one lowercase, one number, and one symbol!&#39;;
+        notification.innerHTML = &#39;&#39;;
+        return false;
+    }
+    if(!newPassword.value.match(/[0-9]/)){
+        newPasswordWarning.innerHTML = &#39;Password should contain one upper case, one lowercase, one number, and one symbol!&#39;;
+        notification.innerHTML = &#39;&#39;;
+        return false;
+    }
+    if(!newPassword.value.match(/[!/@/#/$/%/^/&amp;/*/&lt;/&gt;/_/]/)){
+        newPasswordWarning.innerHTML = &#39;Password should contain one upper case, one lowercase, one number, and one symbol!&#39;;
+        notification.innerHTML = &#39;&#39;;
+        return false;
+    }
+    if(newPassword.value===currentUser.password){
+        newPasswordWarning.innerHTML = &#39;New password should not be same as your old password!&#39;;
+        notification.innerHTML = &#39;&#39;;
+        return false;
+    }
+    else{
+        newPasswordWarning.innerHTML = &#39;&#39;;
+    }
+
+    if(newPassword.value !== confirmNewPassword.value){
+        confirmNewPasswordWarning.innerHTML = &quot;New password and Confirm Password should be the same!&quot;;
+        notification.innerHTML = &#39;&#39;;
+        return false;
+    }
+    else{
+        confirmNewPasswordWarning.innerHTML = &quot;&quot;;
+        notification.innerHTML = &#39;Password changed successfully!!&#39;;
+        currentUser.password = confirmNewPassword.value;
+        oldPassword.value = &quot;&quot;;
+        newPassword.value = &quot;&quot;;
+        confirmNewPassword.value = &quot;&quot;;
+        window.localStorage.setItem(&#39;currentUser&#39;, JSON.stringify(currentUser));
+        users.map(data=&gt;{
+            console.log(data.password)
+            if(oldPassword.value === data.password){
+                data.password = confirmNewPassword.value;
+            }
+        })
+        window.localStorage.setItem(&#39;users&#39;, JSON.stringify(users));
+    }
+    
+})
+logout.addEventListener(&#39;click&#39;, ()=&gt;{
+    window.localStorage.removeItem(&#39;currentUser&#39;);
+    window.location.href = &#39;../Login/login.html&#39;;
+})
+
+profile css:-
+@import url(&#39;https://fonts.googleapis.com/css2?family=Poppins:wght@300&amp;display=swap&#39;);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: &#39;Poppins&#39;, sans-serif;
+}
+
+body{
+    min-height: 100vh;
+    background: linear-gradient(to top, #c4c5c7 0%, #dcdddf 52%, #ebebeb 100%) no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: #162938;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 70px;
+    background-color: #162938;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.5rem;
+    color: #fff;
+    user-select: none;
+}
+
+.navbar a {
+    position: relative;
+    font-size: 1.1rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+}
+.navbar a::after{
+    content: &quot;&quot;;
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: #fff;
+    border-radius: 5px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .5s;
+}
+.navbar a:hover::after{
+    transform-origin: left;
+    transform: scaleX(1);
+}
+
+.container{
+    width: 100%;
+    padding: 100px 0 0 0;
+    text-align: center;
+}
+h3{
+    padding: 10px 0 10px 0;
+}
+button{
+    background-color: #162938;
+    color: #fff;
+    padding: 8px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor:pointer;
+}
+.changePassword{
+    margin: 20px 0 0 0;
+    width: 100%;
+    text-align: center;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+}
+#change, #logout{
+    width: 100px;
+}
+form input{
+    width: 300px;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 10px;
+    border: 1px solid #c4c5c7;;
+}
+
+.hide{
+    display:none;
+}
+.notification{
+    color: #008000;
+}
+
+.form-text{
+    color: #ff0000;
+}
+****************************************************************************************************************************************
+
+Mycart HTML:-
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;My Cart&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;./mycart.css&quot;&gt;
+    &lt;link rel=&quot;icon&quot; type=&quot;image/x-icon&quot; href=&quot;../images/icon.png&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h2 class=&quot;logo&quot;&gt;Click Away&lt;/h2&gt;
+        &lt;nav class=&quot;navbar&quot;&gt;
+            &lt;a class=&quot;home&quot; href=&quot;#&quot;&gt;Home&lt;/a&gt;
+            &lt;a class=&quot;profile&quot; href=&quot;#&quot;&gt;My Profile&lt;/a&gt;
+            &lt;a class=&quot;myCart&quot; href=&quot;#&quot;&gt;My Cart&lt;/a&gt;
+            &lt;a class=&quot;logout&quot; href=&quot;#&quot;&gt;Logout&lt;/a&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+    &lt;h2&gt;My Cart&lt;/h2&gt;
+    &lt;div class=&quot;container&quot;&gt;
+        &lt;h2&gt;My Cart&lt;/h2&gt;
+        &lt;div class=&quot;cart&quot;&gt;
+            &lt;div class=&quot;left&quot;&gt;
+                &lt;h3 class=&quot;warning hide&quot;&gt;Add items in the cart to proceed further!!&lt;/h3&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;right&quot;&gt;
+                &lt;h3&gt;Listed Items&lt;/h3&gt;
+                &lt;div class=&quot;mainCart&quot;&gt;&lt;/div&gt;
+                
+                &lt;div class=&quot;total&quot;&gt;
+                    &lt;div class=&quot;text&quot;&gt;Total&lt;/div&gt;
+                    &lt;div class=&quot;total-price&quot;&gt;&lt;/div&gt;
+                &lt;/div&gt;
+                &lt;button id=&quot;checkout&quot;&gt;Click To Checkout&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;script src=&quot;https://checkout.razorpay.com/v1/checkout.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;./mycart.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+
+Mycart JS:-
+
+const logout = document.querySelector(&#39;.logout&#39;);
+const profile = document.querySelector(&#39;.profile&#39;);
+const home = document.querySelector(&#39;.home&#39;);
+const myCart = document.querySelector(&#39;.myCart&#39;);
+
+
+home.addEventListener(&quot;click&quot;, () =&gt; {
+    if (localStorage.getItem(&#39;currentUser&#39;)) {
+        window.location.href = &#39;../Landingpage/landingpage.html&#39;;
+    }
+    else {
+        window.location.href = &#39;../index.html&#39;;
+    }
+})
+
+logout.addEventListener(&quot;click&quot;, () =&gt; {
+    window.location.href = &quot;../Login/login.html&quot;;
+    localStorage.removeItem(&#39;currentUser&#39;);
+})
+
+profile.addEventListener(&quot;click&quot;, () =&gt; {
+    window.location.href = &quot;../Profile/profile.html&quot;;
+})
+
+myCart.addEventListener(&#39;click&#39;, () =&gt; {
+    window.location.href = &#39;./mycart.html&#39;;
+})
+
+
+
+const cardWrapper = document.querySelector(&#39;.left&#39;);
+const warning = document.querySelector(&#39;.warning&#39;);
+const cartList = document.querySelector(&#39;.mainCart&#39;);
+let cartItems = [];
+localStorage.getItem(&#39;myCart&#39;) ? cartItems = JSON.parse(localStorage.getItem(&#39;myCart&#39;)) : [];
+localStorage.getItem(&#39;myCart&#39;) ? warning.classList.add(&#39;hide&#39;) : warning.classList.remove(&#39;hide&#39;);
+let cartID = 0;
+
+let total = 0;
+let count = 1;
+cartItems.map(product =&gt; {
+    cartList.classList.remove(&#39;hide&#39;)
+    product.id = cartID++;
+    total += product.price;
+    (localStorage.getItem(&#39;myCart&#39;)) ?
+        cardWrapper.innerHTML += `
+    &lt;div class=&quot;card&quot;&gt;
+        &lt;img class=&quot;image-top&quot; src=${product.img} alt=&quot;${product.title}&quot;&gt;
+        &lt;div class=&quot;card-body&quot;&gt;
+            &lt;h5 class=&quot;card-title&quot;&gt;${product.title}&lt;/h5&gt;
+            &lt;p class=&quot;card-text&quot;&gt;&amp;#36;${product.price}&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;button class=&#39;addCart&#39;&gt;Remove From Cart&lt;/button&gt;
+    &lt;/div&gt;
+    ` : &quot;&quot;;
+    (localStorage.getItem(&#39;myCart&#39;)) ?
+        cartList.innerHTML += `
+    &lt;div class=&quot;cartlist&quot;&gt;
+        &lt;div class=&quot;name-id&quot;&gt;
+            &lt;div class=&quot;id&quot;&gt;${count++}.&lt;/div&gt;
+            &lt;div class=&quot;name&quot;&gt;${product.title}&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;price&quot;&gt;&amp;#36;${product.price}&lt;/div&gt;
+    &lt;/div&gt;
+    ` : &quot;&quot;;
+})
+let myCount = 0;
+let removeItem;
+document.querySelectorAll(&#39;.addCart&#39;) ? removeItem = document.querySelectorAll(&#39;.addCart&#39;) : [];
+removeItem.forEach((elem) =&gt; {
+    elem.setAttribute(&#39;id&#39;, myCount++);
+    elem.addEventListener(&#39;click&#39;, () =&gt; {
+        cartItems.map(data =&gt; {
+            if (elem.id == data.id) {
+                cartItems.splice(elem.id, 1);
+            }
+            else if (cartItems.length == 1) {
+                cartItems.pop();
+            }
+        })
+        localStorage.setItem(&#39;myCart&#39;, JSON.stringify(cartItems));
+        window.location.reload();
+    })
+})
+if (myCart.length == undefined) {
+    localStorage.removeItem(&#39;myCart&#39;);
+    warning.classList.remove(&#39;hide&#39;);
+}
+document.querySelector(&#39;.total-price&#39;).innerHTML = `&amp;#36;${total}`;
+
+var options = {
+    key: &quot;rzp_test_HndvDkSTHCu5Io&quot;,
+    amount: total * 100,
+    currency: &quot;INR&quot;,
+    name: &quot;Click Away&quot;,
+    description: &quot;This is your order&quot;,
+    theme: {
+        color: &quot;#000&quot;,
+    },
+    image:
+        &quot;https://www.mintformations.co.uk/blog/wp-content/uploads/2020/05/shutterstock_583717939.jpg&quot;,
+};
+
+document.getElementById(&quot;checkout&quot;).onclick = function (e) {
+    e.preventDefault();
+    if(total&gt;0){
+        localStorage.removeItem(&#39;myCart&#39;);
+        var razorPayGateway = new Razorpay(options);
+        razorPayGateway.open();
+    }
+    else{
+        alert(&#39;Add items in cart to proceed!!&#39;)
+    }
+}
+Mycart CSS:-
+@import url(&#39;https://fonts.googleapis.com/css2?family=Poppins:wght@300&amp;display=swap&#39;);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: &#39;Poppins&#39;, sans-serif;
+}
+
+body{
+    min-height: 100vh;
+    background: linear-gradient(to top, #c4c5c7 0%, #dcdddf 52%, #ebebeb 100%) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 70px;
+    background-color: #162938;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.5rem;
+    color: #fff;
+    user-select: none;
+}
+
+.navbar a {
+    position: relative;
+    font-size: 1.1rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+}
+.navbar a::after{
+    content: &quot;&quot;;
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: #fff;
+    border-radius: 5px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .5s;
+}
+.navbar a:hover::after{
+    transform-origin: left;
+    transform: scaleX(1);
+}
+
+.card{
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items:center;
+    width: 250px;
+    height: 400px;
+    margin: 20px 0 20px 0;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    overflow: hidden;
+    position: relative;
+}
+.image-top{
+    text-align: center;
+    width: 100%;
+    height: 50%;
+    background-size: cover;
+}
+.card-body{
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.card-title{
+    padding: 0 0 5px 0;
+    margin: 0;
+    font-size: .8rem;
+    font-weight: 600;
+    color: #333333
+}
+
+.card-text{
+    margin: 5px 0;
+    font-size: 1rem;
+    color: #079212;
+}
+.addCart{
+    padding: 10px;
+    background: #000;
+    color: #fff;
+    border: none;
+    width: 250px;
+    margin: 10px 0 0 0;
+    cursor: pointer;
+}
+h2{
+    text-align: center;
+    font-weight: 800;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 50px 0 0 0;
+}
+.cart{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 50px 0 0 0;
+}
+.left{
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px
+}
+.warning{
+    color: #ff0000;
+}
+.hide{
+    display: none;
+}
+.right{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 30px 0 0;
+    width: 30%;
+    background-color: #162938;
+    color: #fff;
+    height:max-content;
+    border-radius: 10px;
+}
+h3{
+    text-align: center;
+    padding: 10px 0 15px 0;
+    text-decoration: underline;
+}
+
+.mainCart{
+    display: flex;
+    flex-direction: column;
+}
+.cartlist{
+    width: 100% !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    padding: 0 15px 20px 15px !important;
+}
+.name-id{
+    width: 75%;
+    display: flex;
+    gap: 5px;
+}
+.price{
+    width : 25%;
+    text-align: right;
+}
+.total{
+    border-top: 1px solid #fff;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px 20px 15px;
+}
+#checkout{
+    margin: 0 0 20px 0;
+    padding: 10px;
+    width: 80%;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background-color: #ebebeb;
+    color: #162938;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.hide{
+    display: none;
+}
+</pre></body></html>
